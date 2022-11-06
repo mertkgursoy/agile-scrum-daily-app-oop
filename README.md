@@ -1,2 +1,2 @@
-# agile-scrum-daily-app-repo
-agile-scrum-daily-app-repo for locally hosted project MAMP etc
+# agile-scrum-daily-app-oop
+agile-scrum-daily-app-oop for locally hosted project MAMP etc
