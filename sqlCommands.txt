@@ -1,0 +1,88 @@
+-------------------------------------------- ------------- --------------------------------------------
+--------------------------------------------    DATABASE   --------------------------------------------
+-------------------------------------------- ------------- --------------------------------------------
+1)
+CREATE DATABASE agile_scrum_database;
+
+2) 
+GRANT ALL ON agile_scrum_database.* TO 'theUserName'@'localhost' IDENTIFIED BY 'thePass';
+GRANT ALL ON agile_scrum_database.* TO 'theUserName'@'127.0.0.1' IDENTIFIED BY 'thePass';
+
+
+
+
+
+-------------------------------------------- ------------- --------------------------------------------
+--------------------------------------------     TEAM      --------------------------------------------
+-------------------------------------------- ------------- --------------------------------------------
+3)
+CREATE TABLE teams (
+   team_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+   team_name VARCHAR(128) UNIQUE,
+   team_created_date VARCHAR(128),
+   admin_email VARCHAR(128),
+   admin_name VARCHAR(128),
+   INDEX USING BTREE (team_name)
+) ENGINE=InnoDB CHARSET=utf8;
+
+
+
+
+
+
+-------------------------------------------- ------------- --------------------------------------------
+--------------------------------------------     USERS     --------------------------------------------
+--------------------------------------------  One To Many --------------------------------------------
+
+4)     
+
+
+CREATE TABLE users (
+   user_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+   email VARCHAR(128) UNIQUE,
+   name VARCHAR(128),
+   team_name VARCHAR(128),
+   is_admin INTEGER NOT NULL,
+   is_active INTEGER NOT NULL,
+   password VARCHAR(128),
+   team_id INTEGER NOT NULL,
+   INDEX USING BTREE (email),
+   CONSTRAINT FOREIGN KEY (team_id) REFERENCES teams (team_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB CHARSET=utf8;
+
+
+
+
+
+
+-------------------------------------------- ------------- --------------------------------------------
+--------------------------------------------  DAILY NOTES  --------------------------------------------
+--------------------------------------------  One To Many --------------------------------------------
+
+5)
+CREATE TABLE daily (
+   daily_id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+   wdydy VARCHAR(128),
+   wwydt VARCHAR(128),
+   itai VARCHAR(128),
+   is_note_active INTEGER NOT NULL,
+   daily_created_date VARCHAR(128),
+   team_id INTEGER NOT NULL,
+   user_id INTEGER NOT NULL,
+   CONSTRAINT FOREIGN KEY (team_id) REFERENCES teams (team_id) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB CHARSET=utf8;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
