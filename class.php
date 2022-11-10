@@ -15,9 +15,6 @@ class login extends Auth {
                     // echo "<p>$selectUserSqlQuery</p>\n";
                     /* */
                     /* */
-                    // Buradaki _pdo degisken aslında pdo aslında şu pdo.php içindeki 
-                    //         $pdo = new PDO("mysql:host=$hostName;dbname=$databaseName",$userName,$password);
-                    // buraya class içine çekiyoruz yeni class create edilince ve stmt için kullanıyor.
                     $stmt = $this->authRun()->prepare($selectUserSqlQuery);
                     /* */
                     /* */
